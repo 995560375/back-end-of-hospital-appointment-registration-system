@@ -54,6 +54,18 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>com.atguigu</groupId>
+                <artifactId>common_util</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.atguigu</groupId>
+                <artifactId>service_util</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
             <!--mybatis-plus 持久层-->
             <dependency>
                 <groupId>com.baomidou</groupId>
