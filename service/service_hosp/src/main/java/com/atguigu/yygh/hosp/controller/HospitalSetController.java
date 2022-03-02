@@ -1,5 +1,6 @@
 package com.atguigu.yygh.hosp.controller;
 
+import com.atguigu.yygh.common.exception.YyghException;
 import com.atguigu.yygh.common.result.Result;
 import com.atguigu.yygh.common.result.config.utils.MD5;
 import com.atguigu.yygh.hosp.service.HospitalSetService;
@@ -39,6 +40,11 @@ public class HospitalSetController {
     @ApiOperation(value = "逻辑删除医院设置")
     @DeleteMapping("{id}")
     public Result removeHospSet(@PathVariable Long id){
+//        try {
+//            int i = 1 / 0;
+//        } catch (Exception e) {
+//            throw new YyghException("失败", 201);
+//        }
         boolean flag = hospitalSetService.removeById(id);
         if(flag) {
             return Result.ok();
