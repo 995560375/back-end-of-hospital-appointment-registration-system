@@ -9,6 +9,7 @@ import com.atguigu.yygh.model.cmn.Dict;
 import com.atguigu.yygh.model.hosp.HospitalSet;
 import com.atguigu.yygh.vo.cmn.DictEeVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
@@ -82,6 +83,29 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    //根据value和dictcode查询
+    @Override
+    public String getDictName(String dictCode, String value) {
+        if(StringUtils.isEmpty(dictCode)){
+            QueryWrapper<Dict> wrapper = new QueryWrapper<>();
+            wrapper.eq("value", value);
+            Dict dict = baseMapper.selectOne(wrapper);
+            return dict.getName();
+        }else {
+            Dict codeDict = this.getDictByDictCode(dictCode);
+            Long parent_id = codeDict.getId();
+            Dict finalDict = baseMapper.selectOne(new QueryWrapper<Dict>().eq("parent_id", parent_id).eq("value", value));
+            return finalDict.getName();
+        }
+
+    }
+
+    private Dict getDictByDictCode(String dictCode){
+        QueryWrapper<Dict> wrapper = new QueryWrapper<>();
+        wrapper.eq("dict_code", dictCode);
+        Dict codeDict = baseMapper.selectOne(wrapper);
+        return codeDict;
     }
 
     private boolean hasChildren(Long id){

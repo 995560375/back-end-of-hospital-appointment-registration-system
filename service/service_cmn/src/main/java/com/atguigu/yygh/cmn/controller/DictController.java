@@ -42,4 +42,19 @@ public class DictController {
         List<Dict> list = dictService.findChildData(id);
         return Result.ok(list);
     }
+
+    //根据dictcode和value查询
+    @GetMapping("getName/{dictCode}/{value}")
+    public  String getName(@PathVariable String dictCode,
+                           @PathVariable String value){
+        String dicName = dictService.getDictName(dictCode, value);
+        return dicName;
+    }
+    //根据value查询
+    @GetMapping("getName/{value}")
+    public  String getName(
+                           @PathVariable String value){
+        String dicName = dictService.getDictName("", value);
+        return dicName;
+    }
 }
