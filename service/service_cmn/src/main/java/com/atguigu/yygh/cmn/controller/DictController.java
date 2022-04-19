@@ -35,6 +35,14 @@ public class DictController {
 //        return Result.ok();
     }
 
+    //根据数据id查询子数据列表
+    @ApiOperation("根据数据id查询子数据列表")
+    @GetMapping("/findByDictCode/{dictCode}")
+    public  Result findByDictCode(@PathVariable String dictCode){
+        List<Dict> list = dictService.findByDictCode(dictCode);
+        return Result.ok(list);
+    }
+
     //根据id查询子数据
     @ApiOperation(value = "根据id查询子数据")
     @GetMapping("findChildData/{id}")
