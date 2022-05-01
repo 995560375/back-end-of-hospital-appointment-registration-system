@@ -20,4 +20,6 @@ public interface HospitalService {
     Map<String, Object> showHospDetail(String id);
     //获取医院名称
     String getHospName(String hoscode);
+//根据医院名称查询
+    Object findByHosname(String hosname);
 }

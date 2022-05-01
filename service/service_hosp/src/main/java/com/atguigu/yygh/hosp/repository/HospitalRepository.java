@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface HospitalRepository extends MongoRepository<Hospital, String> {
     //判断是否存在这个数据
     Hospital getHospitalByHoscode(String hoscode);
+
+    Object findHospitalByHosnameLike(String hosname);
 }
