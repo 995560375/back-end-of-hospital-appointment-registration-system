@@ -102,7 +102,7 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public Object findByHosname(String hosname) {
+    public List<Hospital> findByHosname(String hosname) {
         return hospitalRepository.findHospitalByHosnameLike(hosname);
 
     }
